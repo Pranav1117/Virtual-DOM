@@ -97,11 +97,11 @@
             $DOM.appendChild(createElement(newElement))
         }
         // this will remove element
-        else if(!oldElement){
+        else if(!newElement){
             $DOM.reomveChild($DOM.childNodes[index])
         }
         // this will check if nodes are changed then only it will replace changed node
-        else if(changed(newEle,oldElement)){
+        else if(changed(newElement,oldElement)){
             $DOM.replaceChild(createElement(newElement),
             $DOM.childNodes[index])
         }
