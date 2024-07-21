@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Example</title>
+</head>
+<body>
+    <div id="parent">
+        <p id="child1">First Child</p>
+        <p id="child2">Second Child</p>
+<!-- This is a comment node  -->
+    </div>
+    <script>
+        let parentElement = document.getElementById('parent');
+
+        console.log(parentElement.childNodes ,'childNodes'); // NodeList of all child nodes
+        console.log(parentElement.children, ' children'); // HTMLCollection of child elements
+
+        let firstChild = parentElement.firstChild;
+        console.log(firstChild,'firstChild'); // First child node (could be a text or comment node)
+
+        let lastChild = parentElement.lastChild;
+        console.log(lastChild,'lastChild'); // Last child node (could be a text or comment node)
+
+        let child1 = document.getElementById('child1');
+        console.log(child1.parentNode,'parentNode'); // Parent node of child1
+
+        let nextSibling = child1.nextSibling;
+        console.log(nextSibling,'nextSibling'); // Next sibling of child1 (could be a text or comment node)
+
+        let child2 = document.getElementById('child2');
+        let previousSibling = child2.previousSibling;
+        console.log(previousSibling,"previousSibling"); // Previous sibling of child2 (could be a text or comment node)
+    </script>
+</body>
+</html>

@@ -32,8 +32,8 @@
     // Nowdays, transpiler do this for us(Babel)   
     
     <div className = 'main' >
-            <p>Hello</p>
-        </div>
+        <p>Hello</p>
+    </div>
 
     // we need to represent this DOM in memory 
 
@@ -67,5 +67,42 @@
 
         const $el= document.createElement(node.type)
 
+        node.childern.map(createElement).forEach($el.appendChild.bind($el));
+        return $el;
+
     }
 
+    // Okay up until now we have function that takes JSX and create Real DOM
+    // Now we need to handle changes in virtual DOM and reflect those on real DOM.
+
+    // Let's create a function that handle those changes
+    // we have to handle 3 cases while implementing changes
+    // first New Element or node is added
+    // second Element or node deleted
+    // third Element or node has been changed
+
+
+    // this is a helper function that will check if 2 nodes are changed or not 
+    function changed(node1,node2){
+        return typeof node1 !== typeof node2 ||   // this will return true if both node's types are different
+        typeof node1 === 'string' && node1 !== node2 ||  //this will first check if both are strings and if yes they are different it wiil return true
+        node1.type !== node2.type  // this will return true if node1.types is different from nodes2.types
+
+        // so basically it will return true if both nodes are different
+    }
+
+    function handleDom( $DOM, newElement, oldElement,index=0) {
+    //    this will add new Element
+        if(!oldElement){
+            $DOM.appendChild(createElement(newElement))
+        }
+        // this will remove element
+        else if(!oldElement){
+            $DOM.reomveChild($DOM.childNodes[index])
+        }
+        // this will check if nodes are changed then only it will replace changed node
+        else if(changed(newEle,oldElement)){
+            $DOM.replaceChild(createElement(newElement),
+            $DOM.childNodes[index])
+        }
+    }
